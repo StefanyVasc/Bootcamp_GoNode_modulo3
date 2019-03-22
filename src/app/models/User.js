@@ -1,10 +1,13 @@
 const moongose = require('mongoose')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken') // cria os tokens e verifica se os tokens estão validados
 
 /* Criando o userSchema, no mongoDB não possui tabelas, por isso não tem a parte de migrations (pois cada dado pode ter formatos diferentes)tr
 Os dados são salvos de forma não estruturada, é salvo por completo (não coluna//dado), sendo assim quando for necessário alterar o schema é só
 adicionar ou retirar o campo que é desejado
 */
+
+const authConfig = require('../../config/auth')
 
 const UserSchema = new moongose.Schema({
   name: {
@@ -47,4 +50,12 @@ UserSchema.methods = {
   }
 }
 
+// retornando o token para o frontpara ele ser usado nas próximas requisições para saber se o usuário se autenticou na aplicação
+// esse método será estático pois não será disparado por uma instância, será disparado diretamente do model User
+UserSchema.statics = {
+  generateToken ({ id }) {
+    // generateToken recebe um usuário que eu quero pegar apenas o ID
+    return jwt.sign({ id }, authConfig.secret, { expiresIn: authConfig.ttl }) // pode passar quantas informações do usuário quiser, elas ficam criptografadas dentro do token
+  }
+}
 module.exports = moongose.model('User', UserSchema)
