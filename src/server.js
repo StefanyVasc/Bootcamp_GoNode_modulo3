@@ -13,9 +13,9 @@ class App {
     this.express = express()
     this.isDev = process.env.NODE_ENV !== 'production'
 
+    this.sentry()
     this.database()
     this.middlewares()
-    this.sentry()
     this.routes()
     this.exception()
   }

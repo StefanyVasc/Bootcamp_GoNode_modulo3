@@ -14,7 +14,7 @@ class PurchaseMail {
       to: ad.author.email,
       subject: `Solicitação de compra: ${ad.title}`,
       template: 'purchase',
-      context: { user, content, ad: ad }
+      context: { user, content, ad }
     })
     return done()
   }

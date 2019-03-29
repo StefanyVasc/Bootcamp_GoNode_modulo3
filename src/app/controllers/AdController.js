@@ -3,7 +3,7 @@ const Ad = require('../models/Ad')
 class AdController {
   async index (req, res) {
     /* para listagem */
-    const filters = {} // armazenando os filtros
+    const filters = { purchasedBy: null } // armazenando os filtros
 
     if (req.query.price_min || req.query.price_max) {
       filters.price = {}
