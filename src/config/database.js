@@ -1,3 +1,3 @@
 module.exports = {
-  uriP: 'mongodb://localhost:27017/gonode03'
+  uriP: process.env.DB_URL
 }
