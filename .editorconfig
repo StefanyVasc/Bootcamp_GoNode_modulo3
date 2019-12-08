@@ -1,16 +1,9 @@
-{
-  "env": {
-    "commonjs": true,
-    "es6": true,
-    "node": true
-  },
-  "extends": "standard",
-  "globals": {
-    "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
-  },
-  "parserOptions": {
-    "ecmaVersion": 2018
-  },
-  "rules": {}
-}
+root = true 
+
+[*]
+
+indent_style = space
+indent_size = 2
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
